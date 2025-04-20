@@ -124,3 +124,27 @@ def plot_dgnb_semisup(alpha_cur,mu_cur,cova_cur,X,ynew,Xlab,ylab,kNum_lab_labels
     fig_cur=plot_gnb_semisup(X,ynew,gnb_dum,inAcc,inTitle)
     return fig_cur
 
+def plot_data(npData_nonan,npLabs_nonan):
+    X=npData_nonan
+    y=npLabs_nonan
+    Labs=np.unique(npLabs_nonan)
+    kNumLabs=Labs.shape[0]
+
+    fig0=plt.figure()
+    inTitle="Semi-labeled Data"; #cmap='Paired'
+    colors=['white','blue','red','green','cyan','black','magenta','brown','purple','yellow']
+    sizes=[40,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60,60]
+    #plt.scatter(X[:,0], X[:,1], c=y, cmap=cmap, edgecolors='k');
+    for m in range(kNumLabs):
+        indm=(y==Labs[m])
+        plt.scatter(X[indm,0], X[indm,1], s=sizes[m], c=colors[m], edgecolors='k');
+    #
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
+    plt.xlabel("feature 1")
+    plt.ylabel("feature 2")
+    plt.grid()
+    plt.title(inTitle,fontsize=20)
+    return fig0
+
+
